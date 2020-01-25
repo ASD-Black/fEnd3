@@ -20,10 +20,16 @@ import { FeedDetails } from './pages/tabs/Feed/FeedDetails'
 import { Search } from './pages/tabs/Search/Search'
 import { SearchDetails } from './pages/tabs/Search/SearchDetails'
 
+import { History} from './pages/tabs/History'
+import { Pay } from './pages/tabs/Pay'
+
 import { SideManu } from './Components/SideManu'
 
 
 const navOptionHandler = (navigation) => ({
+  headerShown: true
+})
+const navOptionHandlerOFF = (navigation) => ({
   headerShown: false
 })
 
@@ -54,10 +60,18 @@ const MainTabs = createBottomTabNavigator({
   Search: SearchStack
 });
 
+const PaymentTabs = createBottomTabNavigator({
+  Payment_History: History,
+  Recharge: Pay,
+  
+});
+
+
+
 const MainStack = createStackNavigator({
   Home: {
     screen: MainTabs,
-    navigationOptions: navOptionHandler
+    navigationOptions: navOptionHandlerOFF
   },
   Setting: {
     screen: Setting,
@@ -67,8 +81,8 @@ const MainStack = createStackNavigator({
     screen: Profile,
     navigationOptions: navOptionHandler
   },
-  CardFormScreen: {
-    screen: CardFormScreen,
+  Payments: {
+    screen: PaymentTabs,
     navigationOptions: navOptionHandler
   }
 }, {initialRouteName: 'Home'})
@@ -86,11 +100,11 @@ const appDrawer = createDrawerNavigator(
   const authStack = createSwitchNavigator({
     Login: {
       screen: Login,
-      navigationOptions: navOptionHandler
+      //navigationOptions: navOptionHandler
     },
     Register: {
       screen: Register,
-      navigationOptions: navOptionHandler
+      //navigationOptions: navOptionHandler
     }
   })
 

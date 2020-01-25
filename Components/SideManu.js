@@ -17,7 +17,7 @@ export class SideManu extends React.Component {
               <ListItem onPress={()=> this.props.navigation.navigate('Setting')}>
                 <Text>Setting</Text>
               </ListItem>
-              <ListItem onPress={()=> this.props.navigation.navigate('CardFormScreen')}>
+              <ListItem onPress={()=> this.props.navigation.navigate('Payments')}>
                 <Text>Payments</Text>
               </ListItem>
             </List>
