@@ -8,6 +8,7 @@ export class Pay extends React.Component {
       return (
         <KeyboardAvoidingView style={{ flex:1}} behavior="padding">
         <View style={styles.container}>
+        <Text style={styles.logoStyle}>Add Your Card Delails</Text>
         <TextInput style={{width: 200,
       height:50,
       backgroundColor: 'rgba(33, 33, 33,0.3)',
@@ -81,6 +82,15 @@ export class Pay extends React.Component {
       flexGrow: 1,
       //alignItems: 'center',
       justifyContent: 'center',
+    },
+    logoStyle: {
+      //justifyContent:'center',
+      marginTop:-70,
+      marginLeft:80,
+      fontWeight:"900",
+      marginBottom:60,
+      fontSize: 30,
+      color: 'rgba(33, 33, 33,0.3)'
     },
     inpuBox: {
       width: 350,

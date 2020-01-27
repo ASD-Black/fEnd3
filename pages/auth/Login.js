@@ -23,7 +23,7 @@ export class Login extends React.Component{
  _loadInitialState = async() => {
       var value = await AsyncStorage.getItem('passengers');
       if(value !== null){
-        this.props.navigation.navigate('app');
+        //this.props.navigation.navigate('app');
       }
   }
 
@@ -57,7 +57,7 @@ export class Login extends React.Component{
 
   login = () =>{
     //alert(this.state.email)
-    fetch('http://192.168.8.101:3000/api/login', {
+    fetch('http://192.168.43.33:3000/api/login', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -73,7 +73,7 @@ export class Login extends React.Component{
     .then((res) => {
       if(res.success === true){
         AsyncStorage.setItem('passengers', res.passengers);
-        alert('lknsdklsnnsl')
+        //alert('lknsdklsnnsl')
         this.props.navigation.navigate('app');
       }
   

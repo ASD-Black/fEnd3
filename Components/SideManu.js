@@ -1,5 +1,5 @@
 import React from 'react';
-import { View,SafeAreaView, ScrollView} from 'react-native';
+import { View,SafeAreaView, ScrollView, AsyncStorage} from 'react-native';
 import { Text, List, ListItem } from 'native-base';
 
 export class SideManu extends React.Component {
@@ -24,11 +24,15 @@ export class SideManu extends React.Component {
           </ScrollView>
           
           <List>
-              <ListItem onPress={()=> this.props.navigation.navigate('auth')}>
+              <ListItem onPress={this.LogOut}>
                 <Text>Logout</Text>
               </ListItem>
             </List>
         </SafeAreaView>
       )
+    }
+    LogOut = async () => {
+      AsyncStorage.clear()
+      this.props.navigation.navigate('auth')
     }
   }
