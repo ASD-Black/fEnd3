@@ -62,20 +62,19 @@ export class Register extends React.Component {
       const {email} =this.state;
       const {Password} =this.state;
   
-      if(checkOwnerName(name) && chackOwnerAddress(address) && chackContactNo(contactNo) && chackOwnerEmail(email) && validatePassword(pass)){
+      if(checkOwnerName(regno) && validateNic(nic) && chackOwnerEmail(email) && validatePassword(Password)){
         
-        fetch('http://192.168.8.102:3000/register',{
+        fetch('http://192.168.43.33:3000/api/signUp',{
           method: 'POST',
           headers: {
               'Accept': 'application/json',
               'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            name: this.state.name,
-            address: this.state.address,
-            contactNo: this.state.contactNo,
+            regno: this.state.regno,
+            nic: this.state.nic,
             email: this.state.email,
-            pass: this.state.pass,
+            Password: this.state.Password,
           })
         })
         .then((response) => response.json())
@@ -84,6 +83,7 @@ export class Register extends React.Component {
           if(res.success === true){
             
             alert(res.succmessage);
+            this.props.navigation.navigate('Login')
           }
           else if(res.success === false){
               alert(res.errmessage);
@@ -93,52 +93,32 @@ export class Register extends React.Component {
       }
   
   
-      //SignUP form validations----------------------------------------------------------------------
+//SignUP form validations----------------------------------------------------------------------
   
       //User Name validation-------------------------------------------------------------------------
-      function checkOwnerName(name){
-        if(name==""){
-          alert("You should fill the User Name")
+      function checkOwnerName(regno){
+        if(regno==""){
+          alert("You should fill the Registation Number")
         }
-        else if(name.length < 3){
-          alert("Invalid User Name.! You should Enter more than 3 letters for User Name")
+        else if(regno.length==10){
+          if(((regno.charAt(0)=='I') && (regno.charAt(1)=='T') || (regno.charAt(0)=='B') && (regno.charAt(1)=='M'))){
+              return true;
+          }
+          else{
+            alert("Invalid Contact Number(ITxxxxxxxx)")
+          }
         }
-        else{
-            return true;
+        else if(regno.length > 10){
+          alert("Invalid Registation Number.! It must be 10 characters")
         }
-      }
-      
-      //Address validation---------------------------------------------------------------------------
-      function chackOwnerAddress(address){
-        if(address==""){
-          alert("You should fill the Address")
-        }
-        else if(address.length < 3){
-          alert("Invalid Address.! You should Enter more than 3 letters for Address")
+        else if(regno.length < 10){
+          alert("Invalid Registation Number.! It must be at least 10 characters")
         }
         else{
             return true;
         }
       }
-      
-      //contact number validation--------------------------------------------------------------------
-      function chackContactNo(contactNo){
-        if(contactNo==""){
-          alert("You should fill the Contact Number")
-        }
-        else if(contactNo.length==10){
-            if(contactNo.charAt(0)=='0'){
-                return true;
-            }
-            else{
-              alert("Invalid Contact Number")
-            }
-        }
-        else{
-          alert("Should be 10 Numbers")
-        }
-      }
-  
+    
       //Email validation-----------------------------------------------------------------------------
       function chackOwnerEmail(email) {
         if(email==""){
@@ -157,11 +137,23 @@ export class Register extends React.Component {
             }
         }
       }
+
+      function validateNic(nic){
+        if(nic==""){
+          alert("You should fill the NIC")
+        }
+        else{
+            return true;
+        }
+      }
   
       //Password validation--------------------------------------------------------------------------
-      function validatePassword(pass){
-        if(pass==""){
+      function validatePassword(Password){
+        if(Password==""){
           alert("You should fill the Password")
+        }
+        else if(Password.length < 6){
+          alert("Password must be at least 6 characters")
         }
         else{
             return true;

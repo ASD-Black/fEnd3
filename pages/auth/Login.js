@@ -23,7 +23,7 @@ export class Login extends React.Component{
  _loadInitialState = async() => {
       var value = await AsyncStorage.getItem('passengers');
       if(value !== null){
-        //this.props.navigation.navigate('app');
+        this.props.navigation.navigate('app');
       }
   }
 

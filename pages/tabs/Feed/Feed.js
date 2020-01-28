@@ -1,28 +1,39 @@
 import React from 'react';
-import { View, TouchableOpacity} from 'react-native';
-import {Text} from 'native-base';
+import MapView from 'react-native-maps';
+import { StyleSheet, Text, View, Dimensions } from 'react-native';
 
-
-export class Feed extends React.Component {
-    render() {
-      return (
-        
-        <View style={{ flex: 1}}>
-        {/* <View style={{justifyContent:'center', alignItems:'center'}}>
-          <StatusBar
-            barStyle="light-content"
-            hidden={false}
-            backgroundColor="blue"
-          />
-        </View> */}
-        
-          <View style={{flex:1, justifyContent: 'center', alignItems: 'center'}}>
-          <Text>Feed Screen</Text>
-          <TouchableOpacity onPress={()=> this.props.navigation.navigate('FeedDetails')}>
-            <Text>Go to Feed Detail</Text>
-          </TouchableOpacity>
-          </View>
-        </View>
-      );
+export default class Feed extends React.Component {
+  render() {
+    const initialRegion = {
+      latitude: 6.90866,
+      longitude: 79.97,
+      latitudeDelta: 0.0922,
+      longitudeDelta: 0.0421,
     }
+    return (
+      <View style={styles.container}>
+        <MapView
+        provider={MapView.PROVIDER_GOOGLE}
+        style={styles.map}
+        region={initialRegion}
+       >
+        <MapView.Marker
+          coordinate={initialRegion}
+          pinColor="red"
+        />
+    </MapView>       
+      </View>
+    );
   }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  map: {
+    ...StyleSheet.absoluteFillObject
+  },
+});

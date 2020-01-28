@@ -15,7 +15,7 @@ import { Profile} from './pages/drawer/Profile'
 import { Setting} from './pages/drawer/Setting'
 import CardFormScreen  from './pages/drawer/CardFormScreen'
 
-import { Feed} from './pages/tabs/Feed/Feed'
+import Feed from './pages/tabs/Feed/Feed'
 import { FeedDetails } from './pages/tabs/Feed/FeedDetails'
 import { Search } from './pages/tabs/Search/Search'
 import { SearchDetails } from './pages/tabs/Search/SearchDetails'
@@ -34,7 +34,7 @@ const navOptionHandlerOFF = (navigation) => ({
 })
 
 const FeedStack = createStackNavigator({
-  Feed: {
+  Map: {
     screen: Feed,
     navigationOptions: navOptionHandler
   },
@@ -56,7 +56,7 @@ const SearchStack = createStackNavigator({
 })
 
 const MainTabs = createBottomTabNavigator({
-  Feed: FeedStack,
+  Map: FeedStack,
   Search: SearchStack
 });
 
